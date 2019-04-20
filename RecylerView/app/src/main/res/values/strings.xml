@@ -4,4 +4,5 @@
     <string name="toolbar_tittle">Contacs</string>
     <string name="action_search">Search</string>
     <string name="search_hint">Type name...</string>
+    <string name="toolbar_title" />
 </resources>
