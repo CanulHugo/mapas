@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
     private ContactsAdapter mAdapter;
     private SearchView searchView;
 
-    // url to fetch contacts json
-    private static final String URL = "https://puntosingular.mx/json/contacts.json";
+
+    private static final String URL = "https://api.androidhive.info/json/contacts.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,33 +66,31 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
         fetchContacts();
     }
 
-    /**
-     * fetches json by making http calls
-     */
+
     private void fetchContacts() {
         JsonArrayRequest request = new JsonArrayRequest(URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         if (response == null) {
-                            Toast.makeText(getApplicationContext(), "Couldn't fetch the contacts! Pleas try again.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "No se pudo recuperar los contactos! Por favor intente de nuevo", Toast.LENGTH_LONG).show();
                             return;
                         }
 
                         List<Contact> items = new Gson().fromJson(response.toString(), new TypeToken<List<Contact>>() {
                         }.getType());
 
-                        // adding contacts to contacts list
+
                         contactList.clear();
                         contactList.addAll(items);
 
-                        // refreshing recycler view
+
                         mAdapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // error in getting json
+
                 Log.e(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        // Associate searchable configuration with the SearchView
+
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
@@ -113,18 +111,18 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
                 .getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
-        // listening to search query text change
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // filter recycler view when query submitted
+
                 mAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-                // filter recycler view when text is changed
+
                 mAdapter.getFilter().filter(query);
                 return false;
             }
@@ -134,12 +132,10 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_search) {
             return true;
         }
@@ -149,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
 
     @Override
     public void onBackPressed() {
-        // close search view on back button pressed
+
         if (!searchView.isIconified()) {
             searchView.setIconified(true);
             return;
@@ -168,6 +164,6 @@ public class MainActivity extends AppCompatActivity implements ContactsAdapter.C
 
     @Override
     public void onContactSelected(Contact contact) {
-        Toast.makeText(getApplicationContext(), "Selected: " + contact.getName() + ", " + contact.getPhone(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Seleccionaste: " + contact.getName() + ", " + contact.getPhone(), Toast.LENGTH_LONG).show();
     }
 }
