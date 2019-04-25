@@ -50,6 +50,7 @@ public class MyApplication extends Application {
             mRequestQueue.cancelAll(tag);
         }
     }
-
-
 }
+
+
+

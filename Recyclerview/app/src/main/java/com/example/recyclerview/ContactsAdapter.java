@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyViewHolder>
-        implements Filterable  {
-
+        implements Filterable {
     private Context context;
     private List<Contact> contactList;
     private List<Contact> contactListFiltered;
@@ -115,7 +114,4 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
     public interface ContactsAdapterListener {
         void onContactSelected(Contact contact);
     }
-
-
-
 }
