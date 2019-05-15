@@ -11,7 +11,6 @@ public class menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
     }
 
     public void uno(View view) {
@@ -27,10 +26,5 @@ public class menu extends AppCompatActivity {
     public void tres(View view) {
         Intent tres = new Intent(this, botontres.class);
         startActivity(tres);
-    }
-
-    public void cuatro(View view) {
-        Intent cuatro = new Intent(this, botoncuatro.class);
-        startActivity(cuatro);
     }
 }
