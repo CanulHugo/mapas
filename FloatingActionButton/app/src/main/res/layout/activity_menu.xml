@@ -82,7 +82,9 @@
         android:text="cinco"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        android:onClick="cinco"
+        />
 
     <Button
         android:id="@+id/button6"
