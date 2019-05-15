@@ -27,4 +27,9 @@ public class menu extends AppCompatActivity {
         Intent tres = new Intent(this, botontres.class);
         startActivity(tres);
     }
+
+    public void cuatro(View view) {
+        Intent cuatro = new Intent(this, botoncuatro.class);
+        startActivity(cuatro);
+    }
 }
